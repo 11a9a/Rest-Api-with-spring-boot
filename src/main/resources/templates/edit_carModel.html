@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Car Model</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" th:href="@{/}">Home</a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/carModels}">Car Models<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/users}">Users</a>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a th:href="@{/logout}" style="color: black">Logout</a></li>
+        </ul>
+    </div>
+</nav>
+
+<br/>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+            <h1 class="text-center"> Update Car Model </h1>
+            <div class="card-body">
+                <form th:action="@{/carModels/{id}(id=${carModel.id})}" th:object="${carModel}" method="POST">
+
+                    <div class="form-group">
+                        <label class="control-label" for="name">Car Model Name </label>
+                        <input id="name" class="form-control" th:field="*{name}"
+                               required autofocus="autofocus" th:errorClass="is-invalid"/>
+                        <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+                             class="invalid-feedback"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" for="engine">Car Model Engine </label>
+                        <input id="engine" class="form-control" th:field="*{engine}"
+                               required autofocus="autofocus" th:errorClass="is-invalid"/>
+                        <div th:if="${#fields.hasErrors('engine')}" th:errors="*{engine}"
+                             class="invalid-feedback"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" for="color">Car Model Color </label>
+                        <input id="color" class="form-control" th:field="*{color}"
+                               required autofocus="autofocus" th:errorClass="is-invalid"/>
+                        <div th:if="${#fields.hasErrors('color')}" th:errors="*{color}"
+                             class="invalid-feedback"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" for="createdYear">Car Model Year </label>
+                        <input id="createdYear" class="form-control" th:field="*{createdYear}"
+                               required autofocus="autofocus" th:errorClass="is-invalid"/>
+                        <div th:if="${#fields.hasErrors('createdYear')}" th:errors="*{createdYear}"
+                             class="invalid-feedback"></div>
+                    </div>
+
+                    <div class="box-footer">
+                        <button type="submit" class="btn" style="background: lightgreen">
+                            Submit
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
